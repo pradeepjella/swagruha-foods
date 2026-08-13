@@ -1,26 +1,365 @@
 @import "tailwindcss";
 
+/* =========================================
+   SAI DURGA SWAGRUHA FOOD
+   GLOBAL DESIGN FOUNDATION
+   ========================================= */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ================================
+     TYPOGRAPHY
+     ================================ */
+
+  --font-heading: var(--font-playfair);
+  --font-body: var(--font-poppins);
+
+  /* ================================
+     BRAND COLORS
+     ================================ */
+
+  --primary: #123b7a;
+  --primary-dark: #0a2854;
+
+  --gold: #d4a72c;
+  --gold-light: #e8c866;
+
+  --background: #fffdf7;
+  --surface: #ffffff;
+
+  --foreground: #172033;
+  --muted: #6b7280;
+
+  --border: #e8e1d0;
 }
+
+/* =========================================
+   TAILWIND THEME
+   ========================================= */
 
 @theme inline {
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+
   --color-background: var(--background);
+  --color-surface: var(--surface);
+
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+
+  --color-border: var(--border);
+
+  --font-sans: var(--font-poppins);
+  --font-heading: var(--font-playfair);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* =========================================
+   GLOBAL BODY
+   ========================================= */
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), sans-serif;
+}
+
+/* =========================================
+   HEADINGS
+   ========================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: var(--font-heading), serif;
+}
+
+/* =========================================
+   BOX SIZING
+   ========================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* =========================================
+   IMAGE DEFAULTS
+   ========================================= */
+
+img {
+  max-width: 100%;
+}
+
+/* =========================================
+   BUTTON DEFAULT
+   ========================================= */
+
+button {
+  font-family: inherit;
+}
+
+/* =========================================
+   SAI DURGA
+   ROYAL FESTIVE HERO BACKGROUND
+   ========================================= */
+
+.hero-royal-bg {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 78% 48%,
+      rgba(212, 167, 44, 0.2) 0%,
+      rgba(212, 167, 44, 0.08) 22%,
+      transparent 48%
+    ),
+    radial-gradient(
+      circle at 15% 45%,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 248, 232, 0.9) 32%,
+      transparent 65%
+    ),
+    linear-gradient(
+      110deg,
+      #fffdf7 0%,
+      #fff8e8 42%,
+      #f8edd3 72%,
+      #fff9ec 100%
+    );
+}
+
+/* =========================================
+   HERO LIGHTING
+   ========================================= */
+
+.hero-royal-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(18, 59, 122, 0.08),
+      transparent 38%
+    ),
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(212, 167, 44, 0.05) 50%,
+      transparent 100%
+    );
+}
+
+/* =========================================
+   SUBTLE TRADITIONAL PATTERN
+   ========================================= */
+
+.hero-royal-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  opacity: 0.22;
+
+  background-image:
+    linear-gradient(
+      45deg,
+      transparent 48%,
+      rgba(169, 125, 32, 0.14) 49%,
+      transparent 51%
+    ),
+    linear-gradient(
+      -45deg,
+      transparent 48%,
+      rgba(169, 125, 32, 0.1) 49%,
+      transparent 51%
+    );
+
+  background-size: 90px 90px;
+
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 18%,
+    black 82%,
+    transparent
+  );
+}
+
+/* =========================================
+   ROYAL HERO BORDER
+   ========================================= */
+
+.hero-royal-border {
+  position: absolute;
+  inset: 18px;
+
+  border: 1px solid rgba(184, 139, 42, 0.18);
+  border-radius: 28px;
+
+  pointer-events: none;
+}
+
+/* =========================================
+   PRODUCT GOLDEN GLOW
+   ========================================= */
+
+.hero-product-glow {
+  position: absolute;
+
+  right: 5%;
+  top: 50%;
+
+  width: 520px;
+  height: 520px;
+
+  transform: translateY(-50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(236, 199, 101, 0.18) 35%,
+      rgba(18, 59, 122, 0.04) 62%,
+      transparent 72%
+    );
+
+  filter: blur(2px);
+
+  pointer-events: none;
+}
+
+/* =========================================
+   GOLD DECORATIVE RINGS
+   ========================================= */
+
+.hero-gold-ring {
+  position: absolute;
+
+  border: 1px solid rgba(184, 139, 42, 0.18);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+.hero-gold-ring-one {
+  width: 420px;
+  height: 420px;
+
+  right: -180px;
+  top: -150px;
+}
+
+.hero-gold-ring-two {
+  width: 300px;
+  height: 300px;
+
+  left: -180px;
+  bottom: -170px;
+}
+
+/* =========================================
+   MOBILE HERO BACKGROUND
+   ========================================= */
+
+@media (max-width: 1023px) {
+  .hero-royal-bg {
+    background:
+      radial-gradient(
+        circle at 50% 72%,
+        rgba(212, 167, 44, 0.16) 0%,
+        transparent 42%
+      ),
+      linear-gradient(
+        180deg,
+        #fffdf7 0%,
+        #fff8e8 55%,
+        #f8edd3 100%
+      );
+  }
+
+  .hero-royal-border {
+    inset: 10px;
+    border-radius: 20px;
+  }
+
+  .hero-product-glow {
+    width: 360px;
+    height: 360px;
+
+    right: 50%;
+    top: 76%;
+
+    transform: translate(50%, -50%);
+  }
+
+  .hero-gold-ring-one {
+    width: 260px;
+    height: 260px;
+
+    right: -140px;
+    top: -100px;
+  }
+
+  .hero-gold-ring-two {
+    width: 220px;
+    height: 220px;
+
+    left: -130px;
+    bottom: -120px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE DEVICES
+   ========================================= */
+
+@media (max-width: 480px) {
+  .hero-royal-border {
+    inset: 7px;
+    border-radius: 16px;
+  }
+
+  .hero-product-glow {
+    width: 300px;
+    height: 300px;
+  }
+
+  .hero-gold-ring-one {
+    width: 200px;
+    height: 200px;
+
+    right: -110px;
+    top: -80px;
+  }
+
+  .hero-gold-ring-two {
+    width: 180px;
+    height: 180px;
+
+    left: -100px;
+    bottom: -100px;
+  }
 }
