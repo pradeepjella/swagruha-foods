@@ -29,10 +29,10 @@ export default function ProductGrid({
       id="products-list"
       className="bg-[#FFFDF7] pb-32 pt-6 sm:pb-36 sm:pt-10"
     >
-      <div className="mx-auto max-w-[1600px] px-3 sm:px-8 lg:px-12 xl:px-20">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-8 lg:px-12 xl:px-20">
         
         {/* TOP BAR */}
-        <div className="mb-5 flex items-center justify-between gap-3 sm:mb-8">
+        <div className="mb-6 flex items-center justify-between gap-3 sm:mb-8">
           <div>
             <p className="text-xs text-[#687386] sm:text-sm">
               Showing{" "}
@@ -48,7 +48,7 @@ export default function ProductGrid({
             onChange={(event) =>
               setSortBy(event.target.value)
             }
-            className="rounded-lg border border-[#D4A72C]/20 bg-white px-2.5 py-2 text-[10px] font-semibold text-[#123B7A] outline-none sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm"
+            className="rounded-xl border border-[#D4A72C]/20 bg-white px-3 py-2.5 text-xs font-semibold text-[#123B7A] outline-none transition focus:border-[#123B7A] sm:px-4 sm:py-3 sm:text-sm"
           >
             <option>Popular</option>
             <option>Top Rated</option>
@@ -57,17 +57,18 @@ export default function ProductGrid({
           </select>
         </div>
 
-        {/* PRODUCTS GRID */}
+        {/* PRODUCTS */}
         {products.length > 0 ? (
           <motion.div
             layout
             className="
               grid
-              grid-cols-4
-              gap-2
+              grid-cols-2
+              gap-3
               sm:grid-cols-2
               sm:gap-5
-              lg:grid-cols-3
+              md:grid-cols-3
+              lg:grid-cols-4
               xl:grid-cols-4
               2xl:grid-cols-5
             "
@@ -86,7 +87,7 @@ export default function ProductGrid({
                 }}
                 transition={{
                   duration: 0.3,
-                  delay: Math.min(index * 0.03, 0.3),
+                  delay: Math.min(index * 0.03, 0.25),
                 }}
               >
                 <ProductCard
@@ -103,7 +104,7 @@ export default function ProductGrid({
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-2xl border border-dashed border-[#D4A72C]/30 bg-white py-16 text-center sm:rounded-3xl sm:py-20"
+            className="rounded-3xl border border-dashed border-[#D4A72C]/30 bg-white py-16 text-center sm:py-20"
           >
             <h3 className="font-heading text-xl text-[#123B7A] sm:text-2xl">
               No products found
