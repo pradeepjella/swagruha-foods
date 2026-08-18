@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import ProductCard, {
   type Product,
 } from "./ProductCard";
@@ -24,17 +25,21 @@ export default function ProductGrid({
   onDecrease,
 }: ProductGridProps) {
   return (
-    <section className="bg-[#FFFDF7] pb-32 pt-10 sm:pb-36">
-      <div className="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12 xl:px-20">
+    <section
+      id="products-list"
+      className="bg-[#FFFDF7] pb-32 pt-6 sm:pb-36 sm:pt-10"
+    >
+      <div className="mx-auto max-w-[1600px] px-3 sm:px-8 lg:px-12 xl:px-20">
+        
         {/* TOP BAR */}
-        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mb-5 flex items-center justify-between gap-3 sm:mb-8">
           <div>
-            <p className="text-sm text-[#687386]">
+            <p className="text-xs text-[#687386] sm:text-sm">
               Showing{" "}
               <span className="font-bold text-[#123B7A]">
                 {products.length}
               </span>{" "}
-              delicious products
+              products
             </p>
           </div>
 
@@ -43,7 +48,7 @@ export default function ProductGrid({
             onChange={(event) =>
               setSortBy(event.target.value)
             }
-            className="rounded-xl border border-[#D4A72C]/20 bg-white px-4 py-3 text-sm font-medium text-[#123B7A] outline-none"
+            className="rounded-lg border border-[#D4A72C]/20 bg-white px-2.5 py-2 text-[10px] font-semibold text-[#123B7A] outline-none sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm"
           >
             <option>Popular</option>
             <option>Top Rated</option>
@@ -52,30 +57,62 @@ export default function ProductGrid({
           </select>
         </div>
 
-        {/* PRODUCTS */}
+        {/* PRODUCTS GRID */}
         {products.length > 0 ? (
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-            {products.map((product) => (
-              <ProductCard
+          <motion.div
+            layout
+            className="
+              grid
+              grid-cols-4
+              gap-2
+              sm:grid-cols-2
+              sm:gap-5
+              lg:grid-cols-3
+              xl:grid-cols-4
+              2xl:grid-cols-5
+            "
+          >
+            {products.map((product, index) => (
+              <motion.div
+                layout
                 key={product.id}
-                product={product}
-                quantity={cart[product.id] || 0}
-                onAdd={onAdd}
-                onIncrease={onIncrease}
-                onDecrease={onDecrease}
-              />
+                initial={{
+                  opacity: 0,
+                  y: 15,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  duration: 0.3,
+                  delay: Math.min(index * 0.03, 0.3),
+                }}
+              >
+                <ProductCard
+                  product={product}
+                  quantity={cart[product.id] || 0}
+                  onAdd={onAdd}
+                  onIncrease={onIncrease}
+                  onDecrease={onDecrease}
+                />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         ) : (
-          <div className="rounded-3xl border border-dashed border-[#D4A72C]/30 bg-white py-20 text-center">
-            <h3 className="font-heading text-2xl text-[#123B7A]">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="rounded-2xl border border-dashed border-[#D4A72C]/30 bg-white py-16 text-center sm:rounded-3xl sm:py-20"
+          >
+            <h3 className="font-heading text-xl text-[#123B7A] sm:text-2xl">
               No products found
             </h3>
 
-            <p className="mt-2 text-sm text-[#687386]">
+            <p className="mt-2 text-xs text-[#687386] sm:text-sm">
               Try searching for another product.
             </p>
-          </div>
+          </motion.div>
         )}
       </div>
     </section>
