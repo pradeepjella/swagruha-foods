@@ -36,47 +36,27 @@ const benefits = [
 export default function HeroSection() {
   return (
     <section className="hero-royal-bg relative w-full overflow-hidden">
-      {/* Decorative Background */}
+      {/* Background decorations */}
       <div className="hero-royal-border" />
       <div className="hero-product-glow" />
       <div className="hero-gold-ring hero-gold-ring-one" />
       <div className="hero-gold-ring hero-gold-ring-two" />
 
       {/* ================= MAIN HERO ================= */}
-      <div
-        className="
-          mx-auto
-          grid
-          w-full
-          max-w-[1600px]
-          grid-cols-1
-          lg:grid-cols-2
-        "
-      >
-        {/* ================= LEFT CONTENT ================= */}
-        <div
-          className="
-            relative
-            z-10
-            flex
-            items-center
-            px-4
-            py-7
-            sm:px-10
-            sm:py-12
-            lg:min-h-[620px]
-            lg:px-14
-            lg:py-14
-            xl:px-20
-          "
-        >
+
+      <div className="mx-auto grid w-full max-w-[1600px] grid-cols-1 lg:grid-cols-2">
+        {/* ================= CONTENT ================= */}
+
+        <div className="relative z-10 flex items-center px-4 py-6 sm:px-10 sm:py-12 lg:min-h-[620px] lg:px-14 lg:py-14 xl:px-20">
           <div className="w-full lg:max-w-[620px]">
-            {/* ================= MOBILE TEXT + IMAGE ================= */}
-            <div className="grid grid-cols-[1.15fr_0.85fr] items-center gap-0 lg:block">
-              
-              {/* LEFT TEXT */}
-              <div className="text-left">
-                {/* Festival Label */}
+            {/* ================= MOBILE LAYOUT ================= */}
+
+            <div className="relative grid grid-cols-[1fr_0.9fr] items-center gap-0 lg:block">
+              {/* ================= LEFT TEXT ================= */}
+
+              <div className="relative z-20 text-left">
+                {/* Festival label */}
+
                 <motion.div
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -92,7 +72,8 @@ export default function HeroSection() {
                   <span className="hidden h-px w-8 bg-[#C99A2E] sm:block" />
                 </motion.div>
 
-                {/* Heading */}
+                {/* Main heading */}
+
                 <motion.h1
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -102,7 +83,7 @@ export default function HeroSection() {
                   }}
                   className="
                     font-heading
-                    text-[38px]
+                    text-[36px]
                     leading-[0.92]
                     tracking-[-0.03em]
                     text-[#123B7A]
@@ -119,6 +100,7 @@ export default function HeroSection() {
                 </motion.h1>
 
                 {/* Description */}
+
                 <motion.p
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -142,7 +124,8 @@ export default function HeroSection() {
                   festive celebrations.
                 </motion.p>
 
-                {/* CTA */}
+                {/* Buttons */}
+
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -150,15 +133,7 @@ export default function HeroSection() {
                     duration: 0.5,
                     delay: 0.35,
                   }}
-                  className="
-                    mt-5
-                    flex
-                    flex-col
-                    gap-2
-                    sm:mt-7
-                    sm:flex-row
-                    sm:gap-3
-                  "
+                  className="mt-5 flex flex-col gap-2 sm:mt-7 sm:flex-row sm:gap-3"
                 >
                   <button
                     type="button"
@@ -191,11 +166,7 @@ export default function HeroSection() {
 
                     <ArrowRight
                       size={14}
-                      className="
-                        transition-transform
-                        duration-300
-                        group-hover:translate-x-1
-                      "
+                      className="transition-transform duration-300 group-hover:translate-x-1"
                     />
                   </button>
 
@@ -230,12 +201,13 @@ export default function HeroSection() {
                 </motion.div>
               </div>
 
-              {/* ================= MOBILE IMAGE ================= */}
+              {/* ================= MOBILE GANESH IMAGE ================= */}
+
               <motion.div
                 initial={{
                   opacity: 0,
-                  scale: 0.92,
-                  x: 15,
+                  scale: 0.88,
+                  x: 25,
                 }}
                 animate={{
                   opacity: 1,
@@ -244,28 +216,54 @@ export default function HeroSection() {
                 }}
                 transition={{
                   duration: 0.8,
+                  delay: 0.15,
                   ease: "easeOut",
                 }}
                 className="
                   relative
+                  -mr-4
                   block
-                  h-[220px]
+                  h-[300px]
                   w-full
                   sm:hidden
                 "
               >
+                {/* Soft gold glow */}
+
+                <div
+                  className="
+                    absolute
+                    left-1/2
+                    top-1/2
+                    h-[180px]
+                    w-[180px]
+                    -translate-x-1/2
+                    -translate-y-1/2
+                    rounded-full
+                    bg-[#D4A72C]/20
+                    blur-3xl
+                  "
+                />
+
                 <Image
                   src="/banners/hero-banner.png"
-                  alt="Ganesh Chaturthi homemade food collection"
+                  alt="Ganesh Chaturthi Homemade Food Collection"
                   fill
                   priority
-                  sizes="45vw"
-                  className="object-contain object-right"
+                  sizes="48vw"
+                  className="
+                    relative
+                    z-10
+                    object-contain
+                    object-center
+                    drop-shadow-[0_20px_30px_rgba(18,59,122,0.18)]
+                  "
                 />
               </motion.div>
             </div>
 
-            {/* ================= DESKTOP TEXT ================= */}
+            {/* ================= DESKTOP EXTRA CONTENT ================= */}
+
             <div className="hidden lg:block">
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
@@ -289,13 +287,7 @@ export default function HeroSection() {
                   duration: 0.5,
                   delay: 0.3,
                 }}
-                className="
-                  mt-5
-                  max-w-[540px]
-                  text-[16px]
-                  leading-7
-                  text-[#26344A]
-                "
+                className="mt-5 max-w-[540px] text-[16px] leading-7 text-[#26344A]"
               >
                 Traditional recipes, premium ingredients and authentic
                 taste — made with love for your festive celebrations.
@@ -305,19 +297,8 @@ export default function HeroSection() {
         </div>
 
         {/* ================= TABLET IMAGE ================= */}
-        <div
-          className="
-            relative
-            hidden
-            min-h-[420px]
-            items-center
-            justify-center
-            px-5
-            py-6
-            sm:flex
-            lg:hidden
-          "
-        >
+
+        <div className="relative hidden min-h-[420px] items-center justify-center px-5 py-6 sm:flex lg:hidden">
           <motion.div
             initial={{
               opacity: 0,
@@ -347,17 +328,16 @@ export default function HeroSection() {
         </div>
 
         {/* ================= DESKTOP IMAGE ================= */}
-        <div
-          className="
-            relative
-            hidden
-            min-h-[620px]
-            items-center
-            justify-center
-            overflow-hidden
-            lg:flex
-          "
-        >
+
+        <div className="relative hidden min-h-[620px] items-center justify-center overflow-hidden lg:flex">
+          {/* Decorative circles */}
+
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute -right-24 top-0 h-72 w-72 rounded-full border border-[#C99A2E]/10" />
+
+            <div className="absolute -bottom-24 left-0 h-64 w-64 rounded-full border border-[#C99A2E]/10" />
+          </div>
+
           <motion.div
             initial={{
               opacity: 0,
@@ -373,13 +353,7 @@ export default function HeroSection() {
               duration: 0.8,
               ease: "easeOut",
             }}
-            className="
-              relative
-              z-10
-              h-[620px]
-              w-full
-              max-w-[760px]
-            "
+            className="relative z-10 h-[620px] w-full max-w-[760px]"
           >
             <Image
               src="/banners/hero-banner.png"
@@ -387,29 +361,15 @@ export default function HeroSection() {
               fill
               priority
               sizes="50vw"
-              className="object-contain object-center"
+              className="object-contain object-center drop-shadow-[0_30px_45px_rgba(18,59,122,0.15)]"
             />
           </motion.div>
         </div>
       </div>
 
       {/* ================= BENEFITS ================= */}
-      <div
-        className="
-          relative
-          z-20
-          mx-auto
-          w-full
-          max-w-[1600px]
-          px-4
-          pb-6
-          sm:px-10
-          sm:pb-8
-          lg:-mt-20
-          lg:px-14
-          xl:px-20
-        "
-      >
+
+      <div className="relative z-20 mx-auto w-full max-w-[1600px] px-4 pb-6 sm:px-10 sm:pb-8 lg:-mt-20 lg:px-14 xl:px-20">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -439,8 +399,15 @@ export default function HeroSection() {
               <div
                 key={`${benefit.title}-${benefit.subtitle}`}
                 className={`
-                  flex flex-col items-center gap-1 px-1 py-2 text-center
-                  sm:gap-2 sm:px-3
+                  flex
+                  flex-col
+                  items-center
+                  gap-1
+                  px-1
+                  py-2
+                  text-center
+                  sm:gap-2
+                  sm:px-3
                   ${
                     index !== 0
                       ? "border-l border-[#C99A2E]/20"
@@ -448,14 +415,7 @@ export default function HeroSection() {
                   }
                 `}
               >
-                <div
-                  className="
-                    flex h-7 w-7 items-center justify-center
-                    rounded-full border border-[#C99A2E]/50
-                    bg-white/40 text-[#123B7A]
-                    sm:h-10 sm:w-10
-                  "
-                >
+                <div className="flex h-7 w-7 items-center justify-center rounded-full border border-[#C99A2E]/50 bg-white/40 text-[#123B7A] sm:h-10 sm:w-10">
                   <Icon
                     size={14}
                     strokeWidth={1.7}
