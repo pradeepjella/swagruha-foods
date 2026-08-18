@@ -1,11 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { Heart, Minus, Plus, ShoppingBag, Star } from "lucide-react";
+import { Minus, Plus, Star } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
 
-export type Product = {
+export interface Product {
   id: number;
   name: string;
   category: string;
@@ -14,7 +13,8 @@ export type Product = {
   rating: number;
   image: string;
   badge?: string;
-};
+  description?: string;
+}
 
 interface ProductCardProps {
   product: Product;
@@ -31,84 +31,61 @@ export default function ProductCard({
   onIncrease,
   onDecrease,
 }: ProductCardProps) {
-  const [isFavourite, setIsFavourite] = useState(false);
-
   return (
     <motion.article
       initial={{ opacity: 0, y: 25 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.45 }}
+      animate={{ opacity: 1, y: 0 }}
       whileHover={{ y: -6 }}
-      className="group relative overflow-hidden rounded-[28px] border border-[#D4A72C]/15 bg-white p-3 shadow-[0_10px_35px_rgba(18,59,122,0.06)] transition-all duration-300 hover:border-[#D4A72C]/50 hover:shadow-[0_22px_55px_rgba(18,59,122,0.12)]"
+      className="group overflow-hidden rounded-[28px] border border-[#123B7A]/10 bg-white shadow-[0_10px_35px_rgba(18,59,122,0.07)] transition hover:shadow-[0_20px_50px_rgba(18,59,122,0.14)]"
     >
-      {/* Product Image */}
-      <div className="relative aspect-square overflow-hidden rounded-[22px] bg-[#FFF8E8]">
+      {/* Image */}
+      <div className="relative aspect-square overflow-hidden bg-[#FFF9EC]">
         {product.badge && (
-          <div className="absolute left-3 top-3 z-10 rounded-full bg-[#123B7A] px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.12em] text-[#E8C866]">
+          <span className="absolute left-4 top-4 z-10 rounded-full bg-[#123B7A] px-3 py-1.5 text-xs font-bold text-white shadow-lg">
             {product.badge}
-          </div>
+          </span>
         )}
-
-        {/* Favourite */}
-        <button
-          type="button"
-          onClick={() => setIsFavourite(!isFavourite)}
-          className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-[#123B7A] shadow-sm backdrop-blur transition hover:scale-110"
-          aria-label="Add to favourites"
-        >
-          <Heart
-            size={18}
-            className={
-              isFavourite
-                ? "fill-[#D4A72C] text-[#D4A72C]"
-                : ""
-            }
-          />
-        </button>
 
         <Image
           src={product.image}
           alt={product.name}
           fill
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          className="object-contain p-5 transition-transform duration-500 group-hover:scale-110"
+          className="object-cover transition duration-500 group-hover:scale-110"
         />
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#D4A72C]/10 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/10 to-transparent" />
       </div>
 
-      {/* Product Details */}
-      <div className="px-2 pb-2 pt-5">
-        <div className="flex items-center justify-between gap-3">
-          <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#A67819]">
-            {product.category}
-          </p>
+      {/* Content */}
+      <div className="p-5">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#B7892D]">
+              {product.category}
+            </p>
 
-          <div className="flex items-center gap-1 text-xs font-semibold text-[#123B7A]">
-            <Star
-              size={13}
-              className="fill-[#D4A72C] text-[#D4A72C]"
-            />
+            <h3 className="mt-1 text-lg font-bold text-[#123B7A]">
+              {product.name}
+            </h3>
+          </div>
+
+          <div className="flex items-center gap-1 rounded-full bg-[#FFF7DF] px-2 py-1 text-xs font-bold text-[#8A651B]">
+            <Star size={13} className="fill-[#D4A72C] text-[#D4A72C]" />
             {product.rating}
           </div>
         </div>
 
-        <h3 className="mt-2 min-h-[48px] font-heading text-xl leading-snug text-[#123B7A]">
-          {product.name}
-        </h3>
+        {product.description && (
+          <p className="mt-2 line-clamp-2 text-sm leading-6 text-[#687386]">
+            {product.description}
+          </p>
+        )}
 
-        <p className="mt-1 text-xs text-[#8A93A3]">
-          {product.weight}
-        </p>
-
-        <div className="mt-5 flex items-center justify-between gap-3">
+        <div className="mt-5 flex items-center justify-between">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.15em] text-[#8A93A3]">
-              Price
-            </p>
+            <p className="text-xs text-[#8B94A3]">{product.weight}</p>
 
-            <p className="mt-1 font-heading text-2xl text-[#123B7A]">
+            <p className="mt-1 text-xl font-bold text-[#123B7A]">
               ₹{product.price}
             </p>
           </div>
@@ -117,50 +94,34 @@ export default function ProductCard({
             <button
               type="button"
               onClick={() => onAdd(product)}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-[#123B7A] text-white shadow-md transition-all duration-300 hover:scale-105 hover:bg-[#0A2854]"
-              aria-label={`Add ${product.name}`}
+              className="rounded-xl bg-[#123B7A] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#0B2B5A]"
             >
-              <ShoppingBag size={18} />
+              Add
             </button>
           ) : (
-            <div className="flex items-center gap-1 rounded-full border border-[#D4A72C]/30 bg-[#FFF8E8] p-1">
+            <div className="flex items-center gap-3 rounded-xl bg-[#123B7A] p-1.5 text-white">
               <button
                 type="button"
                 onClick={() => onDecrease(product)}
-                className="flex h-8 w-8 items-center justify-center rounded-full text-[#123B7A] transition hover:bg-white"
+                className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-white/10"
               >
-                <Minus size={14} />
+                <Minus size={16} />
               </button>
 
-              <span className="min-w-7 text-center text-sm font-bold text-[#123B7A]">
+              <span className="min-w-5 text-center text-sm font-bold">
                 {quantity}
               </span>
 
               <button
                 type="button"
                 onClick={() => onIncrease(product)}
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-[#123B7A] text-white transition hover:bg-[#0A2854]"
+                className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-white/10"
               >
-                <Plus size={14} />
+                <Plus size={16} />
               </button>
             </div>
           )}
         </div>
-
-        {quantity === 0 ? (
-          <button
-            type="button"
-            onClick={() => onAdd(product)}
-            className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl border border-[#123B7A]/15 py-3 text-sm font-semibold text-[#123B7A] transition-all hover:border-[#123B7A] hover:bg-[#123B7A] hover:text-white"
-          >
-            <Plus size={16} />
-            Add to Cart
-          </button>
-        ) : (
-          <div className="mt-5 rounded-xl bg-[#FFF8E8] py-3 text-center text-xs font-semibold text-[#A67819]">
-            {quantity} item{quantity > 1 ? "s" : ""} added to your cart
-          </div>
-        )}
       </div>
     </motion.article>
   );

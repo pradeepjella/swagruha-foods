@@ -1,129 +1,70 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Heart, Leaf, Search } from "lucide-react";
+import { Search, Sparkles } from "lucide-react";
 
 interface ProductsHeroProps {
   searchQuery: string;
-  setSearchQuery: React.Dispatch<
-    React.SetStateAction<string>
-  >;
+  setSearchQuery: (value: string) => void;
 }
 
 export default function ProductsHero({
   searchQuery,
   setSearchQuery,
 }: ProductsHeroProps) {
-  const suggestions = [
-    "Laddu",
-    "Pickles",
-    "Chikki",
-    "Millet Biscuits",
-  ];
-
   return (
-    <section className="relative overflow-hidden bg-[#FFFDF7] pb-10 pt-14 sm:pb-14 sm:pt-20">
-      {/* Background Decorations */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -left-24 top-10 h-64 w-64 rounded-full border border-[#D4A72C]/10" />
+    <section className="relative overflow-hidden bg-[#FFFDF7] py-12 sm:py-16 lg:py-20">
+      {/* Premium Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,167,44,0.16),transparent_32%),radial-gradient(circle_at_bottom_left,rgba(18,59,122,0.10),transparent_38%)]" />
 
-        <div className="absolute right-10 top-10 h-40 w-40 rounded-full bg-[#D4A72C]/5 blur-3xl" />
+      {/* Decorative Blur */}
+      <div className="absolute -left-20 top-10 h-52 w-52 rounded-full bg-[#D4A72C]/10 blur-3xl" />
+      <div className="absolute -right-20 bottom-0 h-64 w-64 rounded-full bg-[#123B7A]/10 blur-3xl" />
 
-        <div className="absolute right-[8%] top-[30%] rotate-12 opacity-30">
-          <Leaf
-            size={100}
-            strokeWidth={1}
-            className="text-[#A67819]"
-          />
-        </div>
+      <div className="relative mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12 xl:px-20">
+        <div className="mx-auto max-w-4xl text-center">
+          
+          {/* Small Badge */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#D4A72C]/25 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.15em] text-[#A67819] shadow-sm backdrop-blur-md sm:text-sm">
+            <Sparkles size={15} />
+            Homemade With Love
+          </div>
 
-        <div className="absolute left-[15%] bottom-5 h-2 w-2 rounded-full bg-[#D4A72C]/60" />
+          {/* Main Heading */}
+          <h1 className="mt-5 font-heading text-4xl leading-[1.1] text-[#123B7A] sm:text-5xl lg:text-6xl xl:text-7xl">
+            Discover Our
+            <span className="mt-1 block text-[#A67819]">
+              Homemade Collection
+            </span>
+          </h1>
 
-        <div className="absolute right-[25%] bottom-10 h-1.5 w-1.5 rounded-full bg-[#123B7A]/40" />
-      </div>
+          {/* Description */}
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-[#687386] sm:text-base lg:text-lg">
+            Discover authentic homemade foods, traditional flavors,
+            healthy choices, and special recipes made with care.
+          </p>
 
-      <div className="relative mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12 xl:px-20">
-        <div className="grid items-center gap-10 lg:grid-cols-[0.7fr_1.3fr]">
-          {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -25 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="mb-4 flex items-center gap-3">
-              <span className="h-px w-10 bg-[#D4A72C]" />
+          {/* Search */}
+          <div className="relative mx-auto mt-8 max-w-2xl sm:mt-10">
+            <div className="absolute -inset-1 rounded-[22px] bg-gradient-to-r from-[#D4A72C]/20 via-transparent to-[#123B7A]/15 blur-md" />
 
-              <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#A67819]">
-                Sai Durga Collection
-              </span>
-            </div>
-
-            <h1 className="font-heading text-5xl leading-[0.9] text-[#123B7A] sm:text-6xl lg:text-7xl">
-              Our
-              <span className="mt-2 block text-[#D4A72C]">
-                Products
-              </span>
-            </h1>
-
-            <div className="mt-5 flex items-center gap-3">
-              <span className="h-px w-16 bg-[#D4A72C]/60" />
-
-              <Heart
-                size={15}
-                className="fill-[#D4A72C] text-[#D4A72C]"
-              />
-
-              <span className="h-px w-10 bg-[#D4A72C]/60" />
-            </div>
-
-            <p className="mt-5 max-w-md text-base leading-7 text-[#687386] sm:text-lg">
-              Authentic homemade flavours, crafted with care and
-              delivered with love from our kitchen to your home.
-            </p>
-          </motion.div>
-
-          {/* Search Area */}
-          <motion.div
-            initial={{ opacity: 0, x: 25 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="w-full"
-          >
             <div className="relative">
               <Search
-                size={22}
-                className="absolute left-6 top-1/2 -translate-y-1/2 text-[#123B7A]/60"
+                size={21}
+                className="absolute left-5 top-1/2 -translate-y-1/2 text-[#A67819] sm:left-6"
               />
 
               <input
                 type="text"
                 value={searchQuery}
-                onChange={(e) =>
-                  setSearchQuery(e.target.value)
+                onChange={(event) =>
+                  setSearchQuery(event.target.value)
                 }
-                placeholder="Search for your favourite homemade products..."
-                className="h-16 w-full rounded-full border border-[#D4A72C]/20 bg-white pl-16 pr-6 text-sm text-[#123B7A] outline-none shadow-[0_12px_35px_rgba(18,59,122,0.08)] transition-all placeholder:text-[#8A93A3] focus:border-[#D4A72C]/60 focus:shadow-[0_15px_45px_rgba(18,59,122,0.12)] sm:text-base"
+                placeholder="Search laddus, biscuits, pickles, snacks..."
+                className="h-15 sm:h-[68px] w-full rounded-2xl border border-[#D4A72C]/20 bg-white/95 pl-14 pr-5 text-sm font-medium text-[#123B7A] outline-none shadow-[0_15px_40px_rgba(18,59,122,0.10)] backdrop-blur-xl transition-all duration-300 placeholder:text-[#9AA3B1] focus:border-[#A67819]/60 focus:shadow-[0_20px_45px_rgba(18,59,122,0.14)] sm:pl-16 sm:pr-6 sm:text-base"
               />
             </div>
+          </div>
 
-            {/* Search Suggestions */}
-            <div className="mt-5 flex flex-wrap gap-2">
-              <span className="self-center text-xs font-medium text-[#8A93A3]">
-                Popular:
-              </span>
-
-              {suggestions.map((item) => (
-                <button
-                  key={item}
-                  type="button"
-                  onClick={() => setSearchQuery(item)}
-                  className="rounded-full border border-[#D4A72C]/20 bg-white px-4 py-2 text-xs font-medium text-[#123B7A] transition hover:border-[#D4A72C] hover:bg-[#FFF8E8]"
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>
