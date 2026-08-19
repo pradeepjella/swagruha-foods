@@ -19,8 +19,23 @@ const categories = [
   "Wadiyalu",
   "Snacks",
   "Karam Powders",
-  "Special",
+  "Special Items",
 ];
+
+const categoryCounts: Record<string, number> = {
+  "All Products": 158,
+  "Laddu Made With Dates": 12,
+  "Biscuits Made With Wheat, Millets & Palm Jaggery": 13,
+  Sweets: 7,
+  "Pickles With Groundnut Oil": 32,
+  "Breakfast Items": 16,
+  Papads: 15,
+  "Chikki's": 12,
+  Wadiyalu: 18,
+  Snacks: 23,
+  "Karam Powders": 17,
+  "Special Items": 10,
+};
 
 export default function ProductCategoryTabs({
   activeCategory,
@@ -29,13 +44,10 @@ export default function ProductCategoryTabs({
   return (
     <section className="relative bg-[#FFFDF7]">
       <div className="mx-auto max-w-[1600px]">
-        {/* CATEGORY NAVIGATION */}
         <div className="relative overflow-x-auto overflow-y-hidden scrollbar-hide">
-          {/* Soft premium background */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#F7F3EB] via-[#FFFDF7] to-[#FFFDF7]" />
 
-          {/* Fixed bottom navigation line */}
-          <div className="pointer-events-none absolute bottom-0 left-0 z-0 h-[2px] w-full bg-[#2E716F]/80" />
+          <div className="pointer-events-none absolute bottom-0 left-0 z-0 h-[2px] w-full bg-[#2E716F]/70" />
 
           <div className="relative z-10 flex min-w-max items-end gap-1 px-4 pt-4 sm:px-8 sm:pt-5 lg:px-12 xl:px-20">
             {categories.map((category, index) => {
@@ -55,16 +67,13 @@ export default function ProductCategoryTabs({
                   whileHover={{
                     y: isActive ? 0 : -2,
                   }}
-                  whileTap={{
-                    scale: 0.98,
-                  }}
-                  className={`relative shrink-0 px-5 py-3 text-sm font-semibold tracking-[0.04em] transition-colors duration-300 sm:px-7 sm:py-4 sm:text-base lg:text-lg ${
+                  whileTap={{ scale: 0.98 }}
+                  className={`relative shrink-0 px-4 py-3 text-left transition-colors duration-300 sm:px-6 sm:py-4 ${
                     isActive
                       ? "z-20 text-[#123B7A]"
-                      : "z-10 text-[#3E4C45] hover:text-[#123B7A]"
+                      : "z-10 text-[#52605A] hover:text-[#123B7A]"
                   }`}
                 >
-                  {/* ONLY THIS BACKGROUND MOVES */}
                   {isActive && (
                     <motion.span
                       layoutId="active-product-category"
@@ -73,23 +82,30 @@ export default function ProductCategoryTabs({
                         stiffness: 350,
                         damping: 30,
                       }}
-                      className="absolute inset-0 rounded-t-[26px] border-x border-t border-[#2E716F]/80 bg-[#FFFDF7] shadow-[0_-8px_30px_rgba(46,113,111,0.10)]"
+                      className="absolute inset-0 rounded-t-[24px] border-x border-t border-[#2E716F]/60 bg-[#FFFDF7] shadow-[0_-8px_30px_rgba(46,113,111,0.08)]"
                     />
                   )}
 
-                  {/* Premium gold accent */}
                   {isActive && (
                     <motion.span
                       layoutId="active-category-accent"
-                      transition={{
-                        duration: 0.25,
-                      }}
+                      transition={{ duration: 0.25 }}
                       className="absolute left-[20%] top-0 h-[2px] w-[60%] rounded-full bg-gradient-to-r from-transparent via-[#C99B45] to-transparent"
                     />
                   )}
 
-                  <span className="relative z-10 whitespace-nowrap">
+                  <span className="relative z-10 block whitespace-nowrap text-[12px] font-semibold sm:text-sm">
                     {category}
+                  </span>
+
+                  <span
+                    className={`relative z-10 mt-1 block text-[9px] sm:text-[10px] ${
+                      isActive
+                        ? "text-[#B7892D]"
+                        : "text-[#8B94A3]"
+                    }`}
+                  >
+                    {categoryCounts[category]} varieties
                   </span>
                 </motion.button>
               );
@@ -97,20 +113,11 @@ export default function ProductCategoryTabs({
           </div>
         </div>
 
-        {/* CATEGORY CONTENT HEADER */}
         <motion.div
           key={activeCategory}
-          initial={{
-            opacity: 0,
-            y: 8,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 0.25,
-          }}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25 }}
           className="bg-[#FFFDF7] px-5 py-5 sm:px-8 sm:py-6 lg:px-12 xl:px-20"
         >
           <div className="flex items-center gap-5">
